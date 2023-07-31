@@ -1,0 +1,54 @@
+.characters-container {
+    overflow-x: auto; /* Enable horizontal scroll */
+    white-space: nowrap; /* Prevent content from wrapping to new lines */
+  }
+  
+  .characters-wrapper {
+    display: inline-flex; /* Use inline-flex to make the content scroll horizontally */
+    gap: 20px; /* Adjust this value as needed to add spacing between characters */
+    padding: 10px; /* Add padding to separate the content from the container edges */
+  }
+
+  .planets-container {
+    overflow-x: auto; /* Enable horizontal scroll */
+    white-space: nowrap; /* Prevent content from wrapping to new lines */
+  }
+  
+  .planets-wrapper {
+    display: inline-flex; /* Use inline-flex to make the content scroll horizontally */
+    gap: 20px; /* Adjust this value as needed to add spacing between characters */
+    padding: 10px; /* Add padding to separate the content from the container edges */
+  }
+
+  .vehicles-container {
+    overflow-x: auto; /* Enable horizontal scroll */
+    white-space: nowrap; /* Prevent content from wrapping to new lines */
+  }
+  
+  .vehicles-wrapper {
+    display: inline-flex; /* Use inline-flex to make the content scroll horizontally */
+    gap: 20px; /* Adjust this value as needed to add spacing between characters */
+    padding: 10px; /* Add padding to separate the content from the container edges */
+  }
+
+  .starships-container {
+    overflow-x: auto; /* Enable horizontal scroll */
+    white-space: nowrap; /* Prevent content from wrapping to new lines */
+  }
+  
+  .starships-wrapper {
+    display: inline-flex; /* Use inline-flex to make the content scroll horizontally */
+    gap: 20px; /* Adjust this value as needed to add spacing between characters */
+    padding: 10px; /* Add padding to separate the content from the container edges */
+  }
+
+  .species-container {
+    overflow-x: auto; /* Enable horizontal scroll */
+    white-space: nowrap; /* Prevent content from wrapping to new lines */
+  }
+  
+  .species-wrapper {
+    display: inline-flex; /* Use inline-flex to make the content scroll horizontally */
+    gap: 20px; /* Adjust this value as needed to add spacing between characters */
+    padding: 10px; /* Add padding to separate the content from the container edges */
+  }
