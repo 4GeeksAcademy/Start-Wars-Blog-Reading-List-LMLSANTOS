@@ -5,7 +5,6 @@ import Vehicle from "../component/vehicle.js";
 import Starship from "../component/starship.js";
 import Specie from "../component/specie.js";
 
-
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -19,28 +18,14 @@ export const Home = () => {
 
 	// calls the function getAllPeople when the component is rendered
 	useEffect(()=> {
-		getPeople();
+		getPeople(); 
+        getPlanet();
+        getVehicle();
+        getStarship();
+       getSpecie();
 	}, [])
 
-    // calls the function getAllPlanets when the component is rendered
-	useEffect(()=> {
-		getPlanet();
-	}, [])
-
-    // calls the function getAllVehicles when the component is rendered
-	useEffect(()=> {
-		getVehicle();
-	}, [])
-
-    // calls the function getAllStarships when the component is rendered
-	useEffect(()=> {
-		getStarship();
-	}, [])
-
-    // calls the function getAllSpecies when the component is rendered
-	useEffect(()=> {
-		getSpecie();
-	}, [])
+    
 
 
 	//Gets all the characters of Star Wars API 
@@ -72,6 +57,9 @@ export const Home = () => {
             console.log(error);
         });
     }
+
+    
+
 
     //Gets all the planets of Star Wars API 
     //--------------------------------------------------------------------
@@ -232,7 +220,7 @@ export const Home = () => {
     return (
         <div className="enclosure">
             <div className="py-2">
-                <h2 className="font-weight-light px-2">Characters</h2>
+                <h2 className="font-weight-light px-2 text-white">Characters</h2>
                 <div className="characters-container">
                     {characters.length !== 0 ? <div className="characters-wrapper">{showCharacters()}</div> : (
                         <div className="spinner-border" role="status">
@@ -242,7 +230,7 @@ export const Home = () => {
                 </div>
             </div>
             <div className="py-2">
-                <h2 className="font-weight-light px-2">Planets</h2>
+                <h2 className="font-weight-light px-2 text-white">Planets</h2>
                 <div className="planets-container">
                     {planets.length !== 0 ? <div className="planets-wrapper">{showPlanets()}</div> : (
                         <div className="spinner-border" role="status">
@@ -252,7 +240,7 @@ export const Home = () => {
                 </div>
             </div>
             <div className="py-2">
-                <h2 className="font-weight-light px-2">Vehicles</h2>
+                <h2 className="font-weight-light px-2 text-white">Vehicles</h2>
                 <div className="vehicles-container">
                     {vehicles.length !== 0 ? <div className="vehicles-wrapper">{showVehicles()}</div> : (
                         <div className="spinner-border" role="status">
@@ -261,26 +249,7 @@ export const Home = () => {
                     )}    
                 </div>
             </div>
-            <div className="py-2">
-                <h2 className="font-weight-light px-2">Starships</h2>
-                <div className="starships-container">
-                    {starships.length !== 0 ? <div className="starships-wrapper">{showStarships()}</div> : (
-                        <div className="spinner-border" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    )}    
-                </div>
-            </div>
-            <div className="py-2">
-                <h2 className="font-weight-light px-2">Species</h2>
-                <div className="species-container">
-                    {species.length !== 0 ? <div className="species-wrapper">{showSpecies()}</div> : (
-                        <div className="spinner-border" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    )}    
-                </div>
-            </div>
+            
 
 
         </div>

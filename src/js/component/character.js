@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+import { Context } from "../store/appContext";
+
 import { useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
+import "../../styles/character.css";
 
 const Character = (props) => {
-    // Verifies if people contains the expected data
-    console.log("character", props.character);
-
-    const navigate = useNavigate();
     
+   
+    const navigate = useNavigate();
+    const {store, actions} = useContext(Context);
 
     const [character, setCharacter] = useState();
     // calls the function getCharacter when the component is rendered
@@ -27,9 +28,7 @@ const Character = (props) => {
         })
         // response converted to JSON format, returns also a promisse
         .then(resp => {
-            console.log(resp.ok);
-            console.log(resp.status);
-            console.log(resp);
+           
             return resp.json();
         })
         // handles the resolved promisse, from the previous step, where the data (JSON response) is logged to the console, and passed to the setPeople()
@@ -44,14 +43,14 @@ const Character = (props) => {
     }
 
     return (
-        <div className="card" style={{width: "18rem"}}>
-            {character && <img src={""} className
+        <div className="card" style={{width: "20rem"}}>
+            {character && <img src={"https://starwars-visualguide.com/#/characters/"} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
-                <h5 className="card-title">{props.character.name}</h5>
+                <h5 className="card-title text-white">{props.character.name}</h5>
             </div>
             {character ? (
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush rounded">
                     <li className="list-group-item">Gender: {character.gender}</li>
                     <li className="list-group-item">Eye_Color: {character.eye_color}</li>
                     <li className="list-group-item">Hair_Color: {character.hair_color}</li>   
@@ -62,11 +61,12 @@ const Character = (props) => {
                 </div>
             )}
             
-            <div>
-            <Link to="/people/:id">
-                <button type="button" className="btn btn-outline-success">Learn More!</button>
-            </Link>
-                <button type="button" className="btn btn-outline-success"><i className="far fa-heart"></i></button>
+            <div className="d-flex justify-content-between mt-2 mb-2">
+           
+                <button type="button" className="ms-2 btn btn btn-light" onClick={()=> navigate("/onecharacter/"+props.character.uid)}>Learn More!</button>
+                <button type="button" className="me-2 btn btn-outline-danger" onClick={()=>
+                    actions.addFavorite({"name":props.character.name, "id":props.character.uid, "type":"character"})}><i className="far fa-heart"></i>
+                </button>
             </div>
         </div>
     )

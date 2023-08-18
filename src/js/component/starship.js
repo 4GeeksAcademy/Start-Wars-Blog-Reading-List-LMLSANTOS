@@ -1,11 +1,15 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../store/appContext";
 
+import { useNavigate } from "react-router-dom";
 
 const Starship = (props) => {
 
 // Verifies if starship contains the expected data
 console.log("starship", props.starship);
+
+    const navigate = useNavigate();
+    const {store, actions} = useContext(Context);
 
     const [starship, setStarship] = useState();
     // calls the function getPlanet when the component is rendered
@@ -41,14 +45,14 @@ console.log("starship", props.starship);
     }
 
     return (
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card" style={{width: "20rem"}}>
             {starship && <img src={""} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
-                <h5 className="card-title">{props.starship.name}</h5>
+                <h5 className="card-title text-white">{props.starship.name}</h5>
             </div>
             {starship ? (
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush rounded">
                     <li className="list-group-item">Name: {starship.name}</li>
                     <li className="list-group-item">Model: {starship.model}</li>
                     <li className="list-group-item">Passengers: {starship.passengers}</li>
@@ -60,11 +64,9 @@ console.log("starship", props.starship);
                 </div>
             )}
             
-            <div>
-            <Link to="/starship/:id">
-                <button type="button" className="btn btn-outline-success">Learn More!</button>
-            </Link>
-                <button type="button" className="btn btn-outline-success"><i className="far fa-heart"></i></button>
+            <div className="d-flex justify-content-between mt-2 mb-2">
+                <button type="button" className="ms-2 btn btn btn-light" onClick={()=> navigate("/onestarship/"+props.starship.uid)}>Learn More!</button>
+                <button type="button" className="me-2 btn btn-outline-danger" onClick={()=> actions.addFavorite(props.starship.name)}><i className="far fa-heart"></i></button>
             </div>
         </div>
     )

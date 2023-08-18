@@ -52,3 +52,17 @@
     gap: 20px; /* Adjust this value as needed to add spacing between characters */
     padding: 10px; /* Add padding to separate the content from the container edges */
   }
+
+  .enclosure {
+    background-color: black;
+    background-image: url("https://r4.wallpaperflare.com/wallpaper/1005/822/563/star-wars-death-star-at-at-space-wallpaper-abe6bced53f1bfb9a5847bf93dac5c90.jpg");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: auto; 
+  }
+
+  .btn-light:hover{
+    color: blue;
+    font-weight: 700;
+    font-size: 1em;
+  }

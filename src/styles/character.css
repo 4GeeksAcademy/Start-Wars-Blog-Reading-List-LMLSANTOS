@@ -1,0 +1,7 @@
+.card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: rgb(18, 18, 69);
+    backdrop-filter: blur(20px) 
+   
+}

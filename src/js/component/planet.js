@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState, useContext} from "react";
+import { Context } from "../store/appContext";
 
+import { useNavigate } from "react-router-dom";
 
 const Planet = (props) => {
-    // Verifies if planet contains the expected data
-    console.log("planet", props.planet);
+    
+    const navigate = useNavigate();
+    const {store, actions} = useContext(Context);
 
     const [planet, setPlanet] = useState();
      // calls the function getPlanet when the component is rendered
@@ -23,9 +25,7 @@ const Planet = (props) => {
         })
          // response converted to JSON format, returns also a promisse
          .then(resp => {
-            console.log(resp.ok);
-            console.log(resp.status);
-            console.log(resp);
+            
             return resp.json();
         })
         // handles the resolved promisse, from the previous step, where the data (JSON response) is logged to the console, and passed to the setPeople()
@@ -40,14 +40,14 @@ const Planet = (props) => {
     }
     
     return (
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card" style={{width: "20rem"}}>
             {planet && <img src={""} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
-                <h5 className="card-title">{props.planet.name}</h5>
+                <h5 className="card-title text-white">{props.planet.name}</h5>
             </div>
             {planet ? (
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush rounded">
                     <li className="list-group-item">Diameter: {planet.diameter}</li>
                     <li className="list-group-item">Population: {planet.population}</li>
                     <li className="list-group-item">Climate: {planet.climate}</li>
@@ -58,11 +58,11 @@ const Planet = (props) => {
                 </div>
             )}
             
-            <div>
-            <Link to="/planet/:id">
-                <button type="button" className="btn btn-outline-success">Learn More!</button>
-            </Link>
-                <button type="button" className="btn btn-outline-success"><i className="far fa-heart"></i></button>
+            <div className="d-flex justify-content-between mt-2 mb-2">
+                <button type="button" className="ms-2 btn btn btn-light" onClick={()=> navigate("/oneplanet/"+props.planet.uid)}>Learn More!</button>
+                <button type="button" className="me-2 btn btn-outline-danger" onClick={()=>
+                    actions.addFavorite({"name":props.planet.name, "id":props.planet.uid, "type":"planet"})}><i className="far fa-heart"></i>
+                </button>
             </div>
         </div>
     )

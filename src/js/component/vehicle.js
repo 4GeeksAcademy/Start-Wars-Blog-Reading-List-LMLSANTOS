@@ -1,10 +1,13 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../store/appContext";
+
+import { useNavigate } from "react-router-dom";
 
 const Vehicle = (props) => {
 
-    // Verifies if vehicle contains the expected data
-    console.log("vehicle", props.vehicle);
+   
+    const navigate = useNavigate();
+    const {store, actions} = useContext(Context);
 
     const [vehicle, setVehicle] = useState();
     // calls the function getPlanet when the component is rendered
@@ -40,14 +43,14 @@ const Vehicle = (props) => {
     }
 
     return (
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card" style={{width: "20rem"}}>
             {vehicle && <img src={""} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
-                <h5 className="card-title">{props.vehicle.name}</h5>
+                <h5 className="card-title text-white">{props.vehicle.name}</h5>
             </div>
             {vehicle ? (
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush rounded">
                     <li className="list-group-item">Name: {vehicle.name}</li>
                     <li className="list-group-item">Model: {vehicle.model}</li>
                     <li className="list-group-item">Crew: {vehicle.crew}</li>
@@ -59,11 +62,11 @@ const Vehicle = (props) => {
                 </div>
             )}
             
-            <div>
-            <Link to="/vehicle/:id">
-                <button type="button" className="btn btn-outline-success">Learn More!</button>
-            </Link>
-                <button type="button" className="btn btn-outline-success"><i className="far fa-heart"></i></button>
+            <div className="d-flex justify-content-between mt-2 mb-2">
+                <button type="button" className="ms-2 btn btn btn-light" onClick={()=>navigate("/onevehicle/"+props.vehicle.uid)}>Learn More!</button>
+                <button type="button" className="me-2 btn btn-outline-danger"onClick={()=>
+                    actions.addFavorite({"name":props.vehicle.name, "id":props.vehicle.uid, "type":"vehicle"})}><i className="far fa-heart"></i>
+                </button>
             </div>
         </div>
     )

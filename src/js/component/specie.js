@@ -1,11 +1,15 @@
-import React, {useState, useEffect} from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../store/appContext";
 
+import { useNavigate } from "react-router-dom";
 
 const Specie = (props) => {
 
     // Verifies if specie contains the expected data
     console.log("specie", props.specie);
+
+    const navigate = useNavigate();
+    const {store, actions} = useContext(Context);
 
     const [specie, setSpecie] = useState();
     // calls the function getSpecie when the component is rendered
@@ -41,14 +45,14 @@ const Specie = (props) => {
     }
 
     return (
-        <div className="card" style={{width: "18rem"}}>
+        <div className="card" style={{width: "20rem"}}>
             {specie && <img src={""} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
-                <h5 className="card-title">{props.specie.name}</h5>
+                <h5 className="card-title text-white">{props.specie.name}</h5>
             </div>
             {specie ? (
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush rounded">
                     <li className="list-group-item">Name: {specie.name}</li>
                     <li className="list-group-item">Language: {specie.language}</li>
                     <li className="list-group-item">Height: {specie.average_height}</li>
@@ -60,17 +64,12 @@ const Specie = (props) => {
                 </div>
             )}
             
-            <div>
-            <Link to="/specie/:id">
-                <button type="button" className="btn btn-outline-success">Learn More!</button>
-            </Link>
-                <button type="button" className="btn btn-outline-success"><i className="far fa-heart"></i></button>
+            <div className="d-flex justify-content-between mt-2 mb-2">
+                <button type="button" className="ms-2 btn btn btn-light" onClick={()=> navigate("/onespecie/"+props.specie.uid)}>Learn More!</button>
+                <button type="button" className="me-2 btn btn-outline-danger" onClick={()=> actions.addFavorite(props.specie.name)}><i className="far fa-heart"></i></button>
             </div>
         </div>
     )
-
-
-
 };
 
 export default Specie;
