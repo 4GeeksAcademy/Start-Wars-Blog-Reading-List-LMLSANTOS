@@ -41,7 +41,7 @@ const Planet = (props) => {
     
     return (
         <div className="card" style={{width: "20rem"}}>
-            {planet && <img src={""} className
+            {planet && <img src={`https://starwars-visualguide.com/assets/img/planets/${props.planet.uid}.jpg`} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
                 <h5 className="card-title text-white">{props.planet.name}</h5>

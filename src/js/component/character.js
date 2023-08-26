@@ -44,7 +44,7 @@ const Character = (props) => {
 
     return (
         <div className="card" style={{width: "20rem"}}>
-            {character && <img src={"https://starwars-visualguide.com/#/characters/"} className
+            {character && <img src={`https://starwars-visualguide.com/assets/img/characters/${props.character.uid}.jpg`} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
                 <h5 className="card-title text-white">{props.character.name}</h5>

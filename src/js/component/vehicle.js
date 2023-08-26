@@ -44,7 +44,7 @@ const Vehicle = (props) => {
 
     return (
         <div className="card" style={{width: "20rem"}}>
-            {vehicle && <img src={""} className
+            {vehicle && <img src={`https://starwars-visualguide.com/assets/img/vehicles/${props.vehicle.uid}.jpg`} className
             ="card-img-top" alt="..."/>}
             <div className="card-body">
                 <h5 className="card-title text-white">{props.vehicle.name}</h5>
