@@ -40,7 +40,35 @@ export const OneCharacter = () => {
     return (
         <div>
             I am the div {params.uid}
+            
+            
+            {character ? ( // Check if character is available before rendering
+                
+                <div>
+                    <div>
+                        <h2>Character Details: {character.name}</h2>
+                    </div>
+                    <div>
+                        <img src={`https://starwars-visualguide.com/assets/img/characters/${params.uid}.jpg`} 
+                                className ="card-img-top" alt="..."
+                                style={{ maxWidth: "400px", maxHeight: "550px" }}/>
+                        <div>
+                            lorem Ipsum
+                        </div>
 
+                    </div>
+
+
+
+                    <p>Gender: {character.gender}</p>
+                    <p>Height: {character.height}</p>
+                    {/* Display other properties as needed */}
+                </div>
+            ) : (
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            )}
         </div>
     )
 };
